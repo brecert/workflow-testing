@@ -2,7 +2,7 @@ name: Clean Preview
 
 jobs:
   clean:
-		if: ${{ github.event.pull_request.closed }}
+    if: ${{ github.event.pull_request.closed }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository and submodules
