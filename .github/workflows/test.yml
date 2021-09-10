@@ -1,6 +1,9 @@
-name: test
-on: *
+name: Clean Preview
+
+on: [*]
 
 jobs:
-  print:
-    - run: echo E
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo Hello
