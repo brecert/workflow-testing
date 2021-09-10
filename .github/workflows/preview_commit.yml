@@ -27,4 +27,4 @@ jobs:
           header: Preview environment
           message: |
             ## Preview environment
-            https://bree.dev/workflow-testing/${{ github.ref }}
+            https://bree.dev/workflow-testing/${{ github.ref }}/
