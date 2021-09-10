@@ -1,22 +1,22 @@
 name: Clean Preview
 
-on: 
-  issues:
-    types: [closed]
+#! Safety:
+#! this workflow should not execute any code at all
+#! see githubs docs on pull_request_target for more
+on: pull_request_target
 
 jobs:
   clean:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository and submodules
-        uses: actions/checkout@v2
-
-      - run: mkdir empty
+      - uses: actions/checkout@v2
+        with:
+          ref: build-previews
+          persist-credentials: false
 
       - name: Clean
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          clean: true
-          folder: empty
+          folder: .
           branch: build-previews
-          clean-exclude: "!${{ github.ref }}/**/*"
+          clean-exclude: "!${{ github.ref }}"
