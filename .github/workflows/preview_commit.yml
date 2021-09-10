@@ -2,7 +2,7 @@ name: Preview Commit
 
 on: 
   pull_request:
-    types: [opened, synchronize, reopened, labeled]
+    types: [synchronize, reopened, labeled]
     
 
 jobs:
@@ -11,21 +11,20 @@ jobs:
     if: github.event.label.name == 'use-preview' || contains(github.event.pull_request.labels.*.name, 'use-preview')
 
     steps:
-      - name: Checkout repository and submodules
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
         with:
           # Head commit of PR
           ref: ${{ github.event.pull_request.head.sha }}
           submodules: recursive
 
-      - name: Deploy
+      - name: publish preview
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: build-previews
           folder: public
           target-folder: ${{ github.ref }}
 
-      - name: Send message
+      - name: send comment
         uses: marocchino/sticky-pull-request-comment@v2
         with:
           header: Preview environment
