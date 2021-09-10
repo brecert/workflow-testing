@@ -20,3 +20,11 @@ jobs:
           branch: build-previews
           folder: public
           target-folder: ${{ github.ref }}
+
+    - name: Publish env
+      uses: marocchino/sticky-pull-request-comment@v2
+      with:
+        header: Preview environment
+        message: |
+          ## Preview environment
+          https://bree.dev/workflow-testing/${{ github.ref }}
