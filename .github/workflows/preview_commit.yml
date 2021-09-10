@@ -31,6 +31,6 @@ jobs:
           header: Preview environment
           message: |
             ## Preview environment
-            https://bree.dev/workflow-testing/${{ github.ref }}/
+            https://bree.dev/workflow-testing/${{ github.ref }}/index.html
 
             This link will remain active until the PR is closed, or the use-preview label is removed.
