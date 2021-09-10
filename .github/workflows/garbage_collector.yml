@@ -16,7 +16,7 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const globber = await glob.create('refs/pull')
+            const globber = await glob.create('refs/pull/*/pull_request')
             for await (const file of globber.globGenerator()) {
               console.log(file)
             }
