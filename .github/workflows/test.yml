@@ -1,9 +1,0 @@
-name: Clean Preview
-
-on: [*]
-
-jobs:
-  clean:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo Hello

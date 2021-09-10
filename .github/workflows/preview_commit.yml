@@ -11,6 +11,8 @@ jobs:
       - name: Checkout repository and submodules
         uses: actions/checkout@v2
         with:
+          # Head commit of PR
+          ref: ${{ github.event.pull_request.head.sha }}
           submodules: recursive
 
       - run: 'echo "${{ github.ref }}" > ./public/ref'

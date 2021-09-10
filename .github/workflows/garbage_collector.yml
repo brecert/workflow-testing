@@ -1,0 +1,28 @@
+name: Clean Preview
+
+on:
+  - workflow_dispatch
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository and submodules
+        uses: actions/checkout@v2
+        with:
+          ref: build-previews
+
+      - name: Clean previews...
+        uses: actions/github-script@v4
+        with:
+          script: |
+            const globber = await glob.create('refs/pull/*')
+            for await (const file of globber.globGenerator()) {
+              console.log(file)
+            }
+
+      - name: Push
+        uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          folder: .
+          branch: build-previews
