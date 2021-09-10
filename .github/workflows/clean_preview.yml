@@ -3,7 +3,9 @@ name: Clean Preview
 #! Safety:
 #! this workflow should not execute any code at all
 #! see githubs docs on pull_request_target for more
-on: pull_request_target
+on:
+  pull_request_target:
+    types: [closed]
 
 jobs:
   clean:
@@ -14,9 +16,10 @@ jobs:
           ref: build-previews
           persist-credentials: false
 
+      - run: 'rm -rf "./${{ github.ref }}"'
+
       - name: Clean
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           folder: .
           branch: build-previews
-          clean-exclude: "!${{ github.ref }}"
