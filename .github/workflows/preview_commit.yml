@@ -1,10 +1,14 @@
 name: Preview Commit
 
-on: pull_request
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+    
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.label.name == 'use-preview' || contains(github.event.pull_request.labels.*.name, 'use-preview')
 
     steps:
       - name: Checkout repository and submodules
@@ -28,3 +32,5 @@ jobs:
           message: |
             ## Preview environment
             https://bree.dev/workflow-testing/${{ github.ref }}/
+
+            This link will remain active until the PR is closed, or the use-preview label is removed.
