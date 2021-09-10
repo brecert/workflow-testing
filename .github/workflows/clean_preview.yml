@@ -5,12 +5,12 @@ name: Clean Preview
 #! see githubs docs on pull_request_target for more
 on:
   pull_request_target:
-    types: [closed, unlabeled]
+    types: [unlabeled]
 
 jobs:
   clean:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.action == 'closed' || github.event.label.name == 'use-preview'
+    if: github.event.label.name == 'use-preview'
 
     steps:
       - uses: actions/checkout@v2
@@ -26,3 +26,12 @@ jobs:
         with:
           folder: .
           branch: build-previews
+
+      # Hopefully this is safe...
+      - name: send comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: Preview environment
+          message: |
+            ## Preview environment
+            The `use-preview` label has been removed, there is no longer a preview enviroment for this pull request.

@@ -1,9 +1,8 @@
 name: Preview Commit
 
-on: 
+on:
   pull_request:
     types: [synchronize, reopened, labeled]
-    
 
 jobs:
   build:
@@ -32,4 +31,4 @@ jobs:
             ## Preview environment
             https://bree.dev/workflow-testing/${{ github.ref }}/index.html
 
-            This link will remain active until the PR is closed, or the use-preview label is removed.
+            This link will remain active until the `use-preview` label is removed.
