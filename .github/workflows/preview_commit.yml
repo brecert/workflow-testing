@@ -1,0 +1,23 @@
+name: Preview Commit
+
+on: pull_request
+
+jobs:
+	build:
+		runs-on: ubuntu-latest
+
+		steps:
+			- name: Checkout repository and submodules
+				uses: actions/checkout@v2
+				with:
+					submodules: recursive
+
+			- run: |
+				${{ GITHUB_REF }} > ./public/ref
+
+			- name: Deploy
+				uses: JamesIves/github-pages-deploy-action@4.1.5
+				with:
+					branch: build-previews
+					folder: public
+					target-folder: ${{ GITHUB_REF }}
