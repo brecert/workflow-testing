@@ -16,4 +16,4 @@ jobs:
           branch: build-previews
           folder: empty
           clean: true
-          clean-exclude: "!${{ GITHUB_REF }}/**/*"
+          clean-exclude: "!${{ github.ref }}/**/*"
