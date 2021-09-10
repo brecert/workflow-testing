@@ -1,10 +1,10 @@
-name: Preview Commit
+name: Clean Preview
 
-on: issues
+on:
+  pull_request_target:
 
 jobs:
-  build:
+  clean:
     runs-on: ubuntu-latest
-
     steps:
-      - run: echo Issue...
+      - run: echo Running!

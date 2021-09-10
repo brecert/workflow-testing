@@ -16,9 +16,16 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
+            const fs = require('fs')
             const globber = await glob.create('refs/pull/*/pull_request')
             for await (const file of globber.globGenerator()) {
-              console.log(file)
+              const pullNumber = parseInt(fs.readFileSync(file))
+              const pullRequest = github.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pullNumber
+              })
+              console.log(pullRequest)
             }
 
       - name: Push
