@@ -16,7 +16,7 @@ jobs:
           ref: build-previews
           persist-credentials: false
 
-      - run: 'rm -rf "./${{ github.event.pull_request.head.ref }}"'
+      - run: 'rm -rf "./refs/pull/${{ github.event.pull_request.number }}"'
 
       - name: Clean
         uses: JamesIves/github-pages-deploy-action@4.1.5
