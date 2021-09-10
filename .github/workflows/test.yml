@@ -1,0 +1,6 @@
+name: test
+on: *
+
+jobs:
+  print:
+    - run: echo E
