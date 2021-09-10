@@ -1,8 +1,12 @@
 name: Clean Preview
 
+on: 
+  issues:
+    types: [closed]
+
 jobs:
   clean:
-    if: ${{ github.event.pull_request.closed }}
+    if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository and submodules
