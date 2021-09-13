@@ -17,6 +17,8 @@ runs:
         ref: ${{ inputs.pull_request_ref }}
         submodules: recursive
 
+    - run: cat ./index.html
+
     - name: publish preview
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
