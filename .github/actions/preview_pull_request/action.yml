@@ -12,6 +12,8 @@ inputs:
 runs:
   using: composite
   steps:
+    - runs: echo "Checking out ${{ inputs.pull_request_ref }}"
+    
     - uses: actions/checkout@v2
       with:
         ref: ${{ inputs.pull_request_ref }}
