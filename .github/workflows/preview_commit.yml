@@ -13,7 +13,11 @@ jobs:
     if: github.event.label.name == 'use-preview' || contains(github.event.pull_request.labels.*.name, 'use-preview')
 
     steps:
-      - uses: ./
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - uses: ./preview_pull_request
         with:
           pull-request-ref: ${{ github.event.pull_request.head.sha }}
           target-folder: ${{ github.ref }}
