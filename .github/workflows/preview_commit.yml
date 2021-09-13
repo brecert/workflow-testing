@@ -17,9 +17,9 @@ jobs:
         with:
           persist-credentials: false
 
-      - run: 'echo "ref: ${{ github.event.pull_request_target.head.sha }}"'
+      - run: 'echo "ref: ${{ github.event.pull_request }}"'
 
       - uses: ./.github/actions/preview_pull_request
         with:
-          pull-request-ref: ${{ github.event.pull_request_target.head.sha }}
+          pull-request-ref: ${{ github.event.pull_request.head.sha }}
           target-folder: ./refs/pull/${{ github.event.pull_request.number }}
