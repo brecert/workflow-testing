@@ -34,4 +34,4 @@ jobs:
           header: Preview environment
           message: |
             ## Preview environment
-            The `use-preview` label has been removed, there is no longer a preview enviroment for this pull request.
+            There is no longer a preview enviroment for this pull request due to the `use-preview` label being removed
