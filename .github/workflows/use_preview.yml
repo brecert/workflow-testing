@@ -23,12 +23,17 @@ jobs:
           path: pull
           submodules: recursive
 
+      - name: build
+        uses: ./.github/actions/build
+        with:
+          folder: ./pull/
+
       - name: publish preview
         uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: build-previews
           folder: pull/public
-          target-folder: ${{ github.event.pull_request.head.sha }}
+          target-folder: refs/pull/${{ github.event.pull_request.number }}
 
       - name: send comment
         uses: marocchino/sticky-pull-request-comment@v2
