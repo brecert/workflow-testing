@@ -15,11 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          persist-credentials: false
+          ref: ${{ inputs.pull_request_ref }}
+          submodules: recursive
 
-      - run: 'echo "ref: ${{ github.event.pull_request.head }}"'
-
-      - uses: ./.github/actions/preview_pull_request
+      - name: publish preview
+        uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
-          pull-request-ref: ${{ github.event.pull_request.head.sha }}
-          target-folder: ./refs/pull/${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: build-previews
+          folder: public
+          target-folder: ${{ inputs.target-folder }}
+
+      - name: send comment
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: Preview environment
+          message: |
+            ## Preview environment
+            https://brecert.github.io/workflow-testing/${{ inputs.target-folder }}/index.html
+
+            This link will remain active until the `use-preview` label is removed.
