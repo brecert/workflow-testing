@@ -1,5 +1,8 @@
 name: Preview Commit
 
+#! Safety:
+#! this workflow should not execute any code at all
+#! see githubs docs on pull_request_target for more
 on:
   pull_request_target:
     types: [synchronize, reopened, labeled]
@@ -10,25 +13,7 @@ jobs:
     if: github.event.label.name == 'use-preview' || contains(github.event.pull_request.labels.*.name, 'use-preview')
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: ../actions/preview_pull_request.yml
         with:
-          # Head commit of PR
-          ref: ${{ github.event.pull_request.head.sha }}
-          submodules: recursive
-
-      - name: publish preview
-        uses: JamesIves/github-pages-deploy-action@4.1.5
-        with:
-          branch: build-previews
-          folder: public
+          pull-request-ref: ${{ github.event.pull_request.head.sha }}
           target-folder: ${{ github.ref }}
-
-      - name: send comment
-        uses: marocchino/sticky-pull-request-comment@v2
-        with:
-          header: Preview environment
-          message: |
-            ## Preview environment
-            https://bree.dev/workflow-testing/${{ github.ref }}/index.html
-
-            This link will remain active until the `use-preview` label is removed.
