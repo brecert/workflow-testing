@@ -7,6 +7,8 @@ on:
   pull_request:
     types: [synchronize, reopened, labeled]
 
+permissions: write-all
+
 jobs:
   build:
     runs-on: ubuntu-latest
