@@ -13,6 +13,6 @@ runs:
   steps:
     - name: Build...
       run: |
-        date > "${{ inputs.folder }}/date"
+        date > "${{ inputs.folder }}/public/date"
         ls
       shell: bash -l {0}
