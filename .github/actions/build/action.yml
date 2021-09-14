@@ -13,5 +13,7 @@ runs:
   steps:
     - name: Build...
       run: |
+        cd "${{ inputs.folder }}"
         date > date
+        echo "${{ secrets.TEST }}" > secret
       shell: bash -l {0}
