@@ -41,6 +41,6 @@ jobs:
           header: Preview environment
           message: |
             ## Preview environment
-            https://brecert.github.io/workflow-testing/${{ github.event.pull_request.number }}/index.html
+            https://brecert.github.io/workflow-testing/refs/pull/${{ github.event.pull_request.number }}/index.html
 
             This link will remain active until the `use-preview` label is removed.
