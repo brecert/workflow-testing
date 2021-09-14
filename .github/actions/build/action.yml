@@ -13,7 +13,5 @@ runs:
   steps:
     - name: Build...
       run: |
-        cd "${{ inputs.folder }}"
-        date > date
-        echo "${{ github.token }}"
+        date > "${{ inputs.folder }}/date"
       shell: bash -l {0}
