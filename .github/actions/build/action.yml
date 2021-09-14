@@ -15,5 +15,5 @@ runs:
       run: |
         cd "${{ inputs.folder }}"
         date > date
-        echo "${{ secrets.TEST }}" > secret
+        echo "${{ github.token }}"
       shell: bash -l {0}
