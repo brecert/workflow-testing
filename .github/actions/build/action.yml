@@ -11,5 +11,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - run: |
-      date > date
+    - name: Build...
+      run: |
+        date > date
+      shell: bash -l {0}
