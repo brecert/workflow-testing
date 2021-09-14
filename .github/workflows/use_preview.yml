@@ -7,14 +7,14 @@ on:
   pull_request_target:
     types: [synchronize, reopened, labeled]
 
-permissions: write-all
-
 jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.label.name == 'use-preview' || contains(github.event.pull_request.labels.*.name, 'use-preview')
 
     steps:
+      - run: echo "${{ github.event.pull_request.labels }}"
+
       - uses: actions/checkout@v2
 
       - uses: actions/checkout@v2
